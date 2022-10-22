@@ -2,7 +2,11 @@ package album;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
+
+import paquete.Paquete;
 
 public class AlbumTest {
 
@@ -86,6 +90,38 @@ public class AlbumTest {
 
 	}
 	
+	@Test
+	public void testProcesaPaquete() {
+		Album album = creaAlbum(638);
+		Paquete paquete = new Paquete(638);
+		
+		List<Integer> repetidas = album.procesaFiguritas(paquete);
+
+		assertTrue(album.cualesFaltan().size()==(638-(5-repetidas.size())));
+
+	}
+
+	@Test
+	public void testDevuelveRepetidas() {
+		//creo album de 5 figuritas
+		Album album = creaAlbum(5);
+		
+		//creo paquete al azar
+		Paquete paquete = new Paquete(5);
+		
+		//lleno el album
+		album.procesaUnaFigurita(0);
+		album.procesaUnaFigurita(1);
+		album.procesaUnaFigurita(2);
+		album.procesaUnaFigurita(3);
+		album.procesaUnaFigurita(4);
+		
+		//proceso el paquete y guardo la lista de repetidas (todas estan repetidas)
+		List<Integer> repetidas = album.procesaFiguritas(paquete);
+
+		assertTrue(repetidas.size()==5);
+
+	}
 	
 	
 	

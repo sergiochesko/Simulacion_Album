@@ -8,15 +8,15 @@ import paquete.Paquete;
 public class Usuario {
 
 	@SuppressWarnings("unused")
-	private String _nombre;
+	//private String _nombre;
 	private Album _album;
 	private int[] _repetidas;
 	private int _contadorSobresComprados;
 	private final int _cantFiguritas;
+
 	
-	public Usuario(String nombre, int cantFiguritas) {
+	public Usuario(int cantFiguritas) {
 		
-		_nombre = nombre;
 		_album= new Album(cantFiguritas);
 		_repetidas= new int[cantFiguritas];
 		_contadorSobresComprados=0;
@@ -37,7 +37,7 @@ public class Usuario {
 	private void agregaRepetidasAColeccionDeRepetidas(List<Integer> repetidasEnPaquete) {
 		
 		for(Integer figu : repetidasEnPaquete) {
-			_repetidas[figu] = _repetidas[figu]++;
+			_repetidas[figu] = _repetidas[figu]+1;
 		}
 	}
 	
@@ -65,4 +65,11 @@ public class Usuario {
 		return _contadorSobresComprados;
 	}
 	
+	public int cantRepetidas() {
+		int ret=0;
+		for(int i=0;i<_repetidas.length;i++) {
+			ret = ret + _repetidas[i];
+		}
+		return ret;
+	}
 }

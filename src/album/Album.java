@@ -34,7 +34,7 @@ public class Album {
 	
 	private void pegaFigurita(int numFigu) {
 		if (numFigu < 0 || numFigu >= _album.length) {
-			throw new IllegalArgumentException("El album debe ser de almenos una posicion");
+			throw new IllegalArgumentException("el numero de esa figurita no corresponde");
 		}
 		else {
 			_album[numFigu] = true;
@@ -70,6 +70,7 @@ public class Album {
 		if(!YaTieneFigurita(numFigu)) {
 			pegaFigurita(numFigu);
 		}
+		else throw new IllegalArgumentException("Ya tiene esa figurita");
 	}
 	
 	
