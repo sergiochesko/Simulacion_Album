@@ -20,7 +20,7 @@ public class PrincipalTest {
 		assertTrue(principal.CantPaquetesPeor() >= principal.CantPaquetesPromedio());
 		System.out.println(principal.CantPaquetesPromedio());
 	}
-	/*
+	
 	@Test
 	public void testCorreSimulacion1UsuarioAlbum1Figu() {
 		Principal principal = new Principal(1,100,1);
@@ -32,5 +32,5 @@ public class PrincipalTest {
 		assertTrue(principal.CantPaquetesPromedio() == 1);
 
 	}
-	*/
+	
 }
