@@ -2,18 +2,18 @@ package simuladores;
 
 import usuario.Usuario;
 
-public class Evento1 {
+public class Evento1Usuario implements Evento{
 
 	private Usuario _usuario;
 	private int _CantPaquetesComprados;
-	private final int _cantFiguritas;
+	private final int _tamanoAlbum;
 	
 	/*
 	 * cantFiguritas
 	 */
-	public Evento1(int cantFiguritas) {
-		_cantFiguritas = cantFiguritas;
-		_usuario = new Usuario(_cantFiguritas);
+	public Evento1Usuario(int tamanoAlbum) {
+		_tamanoAlbum = tamanoAlbum;
+		_usuario = new Usuario(_tamanoAlbum);
 		_CantPaquetesComprados=0;
 	}
 	

@@ -1,6 +1,6 @@
 package main;
 
-import simuladores.Evento1;
+import simuladores.Evento1Usuario;
 
 public class Principal {
 	
@@ -11,8 +11,8 @@ public class Principal {
 	private int _CantPaquetes_Promedio;
 	
 	//conviene crear una interface de simulador para que decida en tiempo de ejecucion. Por ahora avanzo con esto
-	private Evento1 _MejorEvento;
-	private Evento1 _PeorEvento;
+	private Evento1Usuario _MejorEvento;
+	private Evento1Usuario _PeorEvento;
 	
 	public Principal(int cantFiguritas, int CantIteracionesPedidas, int cantidadUsuarios) {
 		
@@ -25,7 +25,7 @@ public class Principal {
 	}
 	
 	public void correSimulacion1Usuario() {
-		_MejorEvento = new Evento1(_cantFiguritas);
+		_MejorEvento = new Evento1Usuario(_cantFiguritas);
 		_PeorEvento = _MejorEvento;
 		_MejorEvento.correSimulacion();
 		
@@ -33,7 +33,7 @@ public class Principal {
 		System.out.println(contador);
 		
 		for(int i=0; i<_CantIteracionesPedidas-1; i++) {
-			Evento1 NuevoEvento = new Evento1(_cantFiguritas);
+			Evento1Usuario NuevoEvento = new Evento1Usuario(_cantFiguritas);
 			NuevoEvento.correSimulacion();
 			System.out.println(NuevoEvento.getCantPaquetesComprados());
 			contador= contador + NuevoEvento.getCantPaquetesComprados();

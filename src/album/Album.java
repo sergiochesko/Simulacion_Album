@@ -11,14 +11,14 @@ public class Album {
 	private int _cantFiguFaltantes;
 	private boolean _completo;
 	
-	public Album(int cantFiguritasToales) {
-		if (cantFiguritasToales <= 0) {
+	public Album(int tamanoAlbum) {
+		if (tamanoAlbum <= 0) {
 			throw new IllegalArgumentException("El album debe ser de almenos una posicion");
 		}
 		else {
-		_album = new boolean[cantFiguritasToales];
+		_album = new boolean[tamanoAlbum];
 		_completo = false;
-		_cantFiguFaltantes=cantFiguritasToales;
+		_cantFiguFaltantes=tamanoAlbum;
 		}
 	}
 	

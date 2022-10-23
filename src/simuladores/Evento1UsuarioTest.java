@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class Evento1Test {
+public class Evento1UsuarioTest {
 
 	@Test
 	public void testCorreSimulacion() {
-		Evento1 evento = new Evento1(638);
+		Evento1Usuario evento = new Evento1Usuario(638);
 		
 		int cantPaquetesComprados = evento.correSimulacion();
 		

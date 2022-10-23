@@ -12,22 +12,24 @@ public class Usuario {
 	private Album _album;
 	private int[] _repetidas;
 	private int _contadorSobresComprados;
-	private final int _cantFiguritas;
+	private final int _tamanoAlbum;
 
 	
-	public Usuario(int cantFiguritas) {
+	public Usuario(int tamanoAlbum) {
 		
-		_album= new Album(cantFiguritas);
-		_repetidas= new int[cantFiguritas];
+		_album= new Album(tamanoAlbum);
+		_repetidas= new int[tamanoAlbum];
 		_contadorSobresComprados=0;
-		_cantFiguritas = cantFiguritas;
+		_tamanoAlbum = tamanoAlbum;
 	}
 	
-	public void ComprarPaquete() {
-		Paquete paquete = new Paquete(_cantFiguritas);
+	public List<Integer> ComprarPaquete() {
+		Paquete paquete = new Paquete(_tamanoAlbum);
 		List<Integer> repetidasEnPaquete = _album.procesaFiguritas(paquete);
 		agregaRepetidasAColeccionDeRepetidas(repetidasEnPaquete);
 		_contadorSobresComprados++;
+		
+		return repetidasEnPaquete;
 	}
 	
 	public void AgregoUnaFigurita(int numFigu) {
@@ -58,7 +60,7 @@ public class Usuario {
 	}
 	
 	public void EntregaFiguRepetida(int numFigu) {
-		_repetidas[numFigu] = _repetidas[numFigu]--;
+		_repetidas[numFigu] = _repetidas[numFigu]-1;
 	}
 	
 	public int CantSobresComprados() {
