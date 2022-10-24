@@ -24,7 +24,7 @@ public class Album {
 	
 	public boolean YaTieneFigurita(int numFigu) {
 		if (numFigu < 0 || numFigu >= _album.length) {
-			throw new IllegalArgumentException("El album debe ser de almenos una posicion");
+			throw new IllegalArgumentException("Numero de figurita Incorrecto");
 		}
 		else {
 			return _album[numFigu];
@@ -34,7 +34,7 @@ public class Album {
 	
 	private void pegaFigurita(int numFigu) {
 		if (numFigu < 0 || numFigu >= _album.length) {
-			throw new IllegalArgumentException("el numero de esa figurita no corresponde");
+			throw new IllegalArgumentException("Numero de figurita Incorrecto");
 		}
 		else {
 			_album[numFigu] = true;
@@ -70,7 +70,7 @@ public class Album {
 		if(!YaTieneFigurita(numFigu)) {
 			pegaFigurita(numFigu);
 		}
-		else throw new IllegalArgumentException("Ya tiene esa figurita");
+		else throw new IllegalArgumentException("Ya tiene esa figurita: "+ numFigu);
 	}
 	
 	
@@ -92,6 +92,17 @@ public class Album {
 		
 		return faltantes;
 		
+	}
+	
+	public String ToString() {
+		StringBuilder str = new StringBuilder();
+		str.append("[");
+		for(int i=0;i < _album.length; i++ ) {
+			str.append(_album[i]).append(" , ");
+		}
+		str.append("]");
+		
+		return str.toString();
 	}
 
 	

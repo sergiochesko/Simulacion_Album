@@ -18,6 +18,8 @@ public class Evento1UsuarioTest {
 		//la cantidad total de figuritas compradas (cant paquetes*5) es igual a la cantidad de figuritas pegadas + repetidas)
 		assertTrue(cantPaquetesComprados*5 == 638 + evento.getCantRepetidas());
 		
+		System.out.println(evento.getCantPaquetesComprados());
+		
 		
 	}
 

@@ -8,9 +8,9 @@ public class PrincipalTest {
 
 	@Test
 	public void testCorreSimulacion1Usuario() {
-		Principal principal = new Principal(638,3000,1);
+		Principal principal = new Principal(638,1000,100);
 		long T1 = System.currentTimeMillis();
-		principal.correSimulacion1Usuario();
+		principal.motorDeSimulacion();
 		long T2 = System.currentTimeMillis();
 		
 		System.out.println(T1);
@@ -19,6 +19,7 @@ public class PrincipalTest {
 		assertTrue(principal.CantPaquetesOptimo() <= principal.CantPaquetesPromedio());
 		assertTrue(principal.CantPaquetesPeor() >= principal.CantPaquetesPromedio());
 		System.out.println(principal.CantPaquetesPromedio());
+		System.out.println(principal.CantPaquetesPromedioPorUsuario());
 	}
 	
 	@Test

@@ -1,5 +1,6 @@
 package usuario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import album.Album;
@@ -9,7 +10,7 @@ public class Usuario {
 
 	@SuppressWarnings("unused")
 	//private String _nombre;
-	private Album _album;
+	public Album _album;
 	private int[] _repetidas;
 	private int _contadorSobresComprados;
 	private final int _tamanoAlbum;
@@ -73,5 +74,26 @@ public class Usuario {
 			ret = ret + _repetidas[i];
 		}
 		return ret;
+	}
+	
+	public ArrayList<Integer> misRepetidas2(){
+		ArrayList<Integer> misRepetidas = new ArrayList<Integer>();
+		for(int i=0; i<_repetidas.length;i++) {
+			if(_repetidas[i]!=0) {
+				misRepetidas.add(i);
+			}
+		}
+		return misRepetidas;
+	}
+	
+	public String repetidasToString() {
+		StringBuilder str = new StringBuilder();
+		str.append("[");
+		for(int i=0;i < _repetidas.length; i++ ) {
+			str.append(_repetidas[i]).append(" , ");
+		}
+		str.append("]");
+		
+		return str.toString();
 	}
 }

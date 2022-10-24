@@ -52,6 +52,11 @@ public class Evento_N_usuarios implements Evento{
 		return _CantPaquetesComprados;
 	}
 	
+	public int getCantPaquetesCompradosPromUsuario() {
+		
+		return _CantPaquetesComprados/_ListaUsuarios.size();
+	}
+	
 	public int getCantIntercambios() {
 		
 		return _cantIntercambios;
