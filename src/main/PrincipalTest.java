@@ -4,13 +4,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import auxiliares.OpcionesDeSimulacion;
+
 public class PrincipalTest {
 
 	@Test
 	public void testCorreSimulacion1Usuario() {
-		Principal principal = new Principal(638,1000,100);
+		Principal principal = new Principal(638,1000,10,OpcionesDeSimulacion.N_USUARIOS_COLABORATIVOS);
 		long T1 = System.currentTimeMillis();
-		principal.motorDeSimulacion();
+		principal.correSimulacion();
 		long T2 = System.currentTimeMillis();
 		
 		System.out.println(T1);
@@ -21,7 +23,7 @@ public class PrincipalTest {
 		System.out.println(principal.CantPaquetesPromedio());
 		System.out.println(principal.CantPaquetesPromedioPorUsuario());
 	}
-	
+	/*
 	@Test
 	public void testCorreSimulacion1UsuarioAlbum1Figu() {
 		Principal principal = new Principal(1,100,1);
@@ -33,6 +35,6 @@ public class PrincipalTest {
 		assertTrue(principal.CantPaquetesPromedio() == 1);
 
 	}
-	
+	*/
 	
 }

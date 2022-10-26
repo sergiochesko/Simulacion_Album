@@ -8,7 +8,7 @@ public class Evento_N_Usuarios_NCTest {
 
 	@Test
 	public void test() {
-		Evento_N_Usuarios_NC evento = new Evento_N_Usuarios_NC(2,638);
+		Evento_N_Usuarios_NC evento = new Evento_N_Usuarios_NC(10,638);
 		
 		int cantPaquetesComprados = evento.correSimulacion();
 		System.out.println("estadisticas");

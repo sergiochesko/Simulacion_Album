@@ -1,7 +1,9 @@
 package main;
 
+import auxiliares.OpcionesDeSimulacion;
 import simuladores.Evento;
 import simuladores.Evento1Usuario;
+import simuladores.Evento_N_Usuarios_NC;
 import simuladores.Evento_N_usuarios;
 
 public class Principal {
@@ -12,12 +14,13 @@ public class Principal {
 	private final int _tamanoAlbum;
 	private int _CantPaquetes_Promedio;
 	private int _CantPaquetes_PromedioPorUsuario;
+	private OpcionesDeSimulacion _opcion;
 	
 	//conviene crear una interface de simulador para que decida en tiempo de ejecucion. Por ahora avanzo con esto
 	private Evento _MejorEvento;
 	private Evento _PeorEvento;
 	
-	public Principal(int tamanoAlbum, int CantIteracionesPedidas, int cantidadUsuarios) {
+	public Principal(int tamanoAlbum, int CantIteracionesPedidas, int cantidadUsuarios, OpcionesDeSimulacion opcion) {
 		
 		_tamanoAlbum = tamanoAlbum;
 		_CantIteracionesPedidas = CantIteracionesPedidas;
@@ -25,30 +28,24 @@ public class Principal {
 		_cantidadUsuarios = cantidadUsuarios;
 		_CantPaquetes_Promedio = 0;
 		_CantPaquetes_PromedioPorUsuario=0;
+		_opcion = opcion;
 		
 	}
 	
-	public void motorDeSimulacion() {
-		if(_cantidadUsuarios==1) {
-			correSimulacion1Usuario();
-		}
-		else {
-			correSimulacionNUsuariosGenerosos();
-		}
-	}
 	
-	public void correSimulacion1Usuario() {
-		_MejorEvento = new Evento1Usuario(_tamanoAlbum);
+	public void correSimulacion() {
+		
+		_MejorEvento = creaEvento();
 		_PeorEvento = _MejorEvento;
 		_MejorEvento.correSimulacion();
 		
 		int contador = _MejorEvento.getCantPaquetesComprados();
-		System.out.println(contador);
+
 		
 		for(int i=0; i<_CantIteracionesPedidas-1; i++) {
-			Evento1Usuario NuevoEvento = new Evento1Usuario(_tamanoAlbum);
+			Evento NuevoEvento = creaEvento();
 			NuevoEvento.correSimulacion();
-			System.out.println(NuevoEvento.getCantPaquetesComprados());
+
 			contador= contador + NuevoEvento.getCantPaquetesComprados();
 			
 			if(NuevoEvento.getCantPaquetesComprados() < _MejorEvento.getCantPaquetesComprados()) {
@@ -60,56 +57,25 @@ public class Principal {
 		}
 		
 		_CantPaquetes_Promedio = Math.round(contador/_CantIteracionesPedidas);
-		_CantPaquetes_PromedioPorUsuario = _CantPaquetes_Promedio;
-	}
-	
-	
-	/*
-	 * Implementar funcion con N usuarios Generosos (Dan repetidas sin pedir nada a cambio)
-	 */
-	public void correSimulacionNUsuariosGenerosos() {
-		
-		_MejorEvento = new Evento_N_usuarios(_cantidadUsuarios,_tamanoAlbum);
-		_PeorEvento = _MejorEvento;
-		
-		_MejorEvento.correSimulacion();
-		
-		int contador = _MejorEvento.getCantPaquetesComprados();
-		System.out.println(contador);
-		
-		for(int i=0; i<_CantIteracionesPedidas-1; i++) {
-			Evento_N_usuarios NuevoEvento = new Evento_N_usuarios(_cantidadUsuarios,_tamanoAlbum);
-			NuevoEvento.correSimulacion();
-			System.out.println(NuevoEvento.getCantPaquetesComprados());
-			contador= contador + NuevoEvento.getCantPaquetesComprados();
-			
-			if(NuevoEvento.getCantPaquetesComprados() < _MejorEvento.getCantPaquetesComprados()) {
-				_MejorEvento = NuevoEvento;
-			}
-			if(NuevoEvento.getCantPaquetesComprados() > _PeorEvento.getCantPaquetesComprados()) {
-				_PeorEvento = NuevoEvento;
-			}
-		}
-		
-		_CantPaquetes_Promedio = Math.round(contador/_CantIteracionesPedidas);
-		_CantPaquetes_PromedioPorUsuario = _CantPaquetes_Promedio/_cantidadUsuarios;
+		_CantPaquetes_PromedioPorUsuario = _CantPaquetes_Promedio / _cantidadUsuarios;
+		System.out.println("corrio");
 		
 	}
-	
-	/*
-	 * Implementar funcion con N usuarios Egoistas (Intercambian figurita por figurita)
-	 */
-	public void correSimulacionNUsuariosEgoistas() {
 		
-	}
-	
-	
 	public int CantPaquetesOptimo() {
 		return _MejorEvento.getCantPaquetesComprados();
 	}
 	
+	public int CantPaquetesOptimoPorUsuario() {
+		return _MejorEvento.getCantPaquetesComprados()/_cantidadUsuarios;
+	}
+	
 	public int CantPaquetesPeor() {
 		return _PeorEvento.getCantPaquetesComprados();
+	}
+	
+	public int CantPaquetesPeorPorUsuario() {
+		return _PeorEvento.getCantPaquetesComprados()/_cantidadUsuarios;
 	}
 
 	public int CantPaquetesPromedio() {
@@ -118,6 +84,27 @@ public class Principal {
 	
 	public int CantPaquetesPromedioPorUsuario() {
 		return _CantPaquetes_PromedioPorUsuario;
+	}
+
+	private Evento creaEvento() {
+		Evento evento;
+		if(_opcion == OpcionesDeSimulacion.UN_USUARIO) {
+			evento = new Evento1Usuario(_tamanoAlbum);
+		}
+		else if(_opcion == OpcionesDeSimulacion.N_USUARIOS_COLABORATIVOS){
+			evento = new Evento_N_usuarios(_cantidadUsuarios,_tamanoAlbum);
+		}
+		else {
+			evento = new Evento_N_Usuarios_NC(_cantidadUsuarios,_tamanoAlbum);
+		}
+		
+		return evento;
+		
+	}
+
+	public String toString() {
+		
+		return "";
 	}
 
 }
