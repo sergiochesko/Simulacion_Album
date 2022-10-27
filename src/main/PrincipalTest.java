@@ -10,7 +10,7 @@ public class PrincipalTest {
 
 	@Test
 	public void testCorreSimulacion1Usuario() {
-		Principal principal = new Principal(638,1000,10,OpcionesDeSimulacion.N_USUARIOS_COLABORATIVOS);
+		Principal principal = new Principal(1600,10,2,OpcionesDeSimulacion.N_USUARIOS_NOCOLABORATIVOS);
 		long T1 = System.currentTimeMillis();
 		principal.correSimulacion();
 		long T2 = System.currentTimeMillis();

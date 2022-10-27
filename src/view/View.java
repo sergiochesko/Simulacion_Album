@@ -44,7 +44,9 @@ public class View {
 	private JLabel ET_Us;
 	private JLabel ET_PeorCaso;
 	private JLabel ET_Titulo;
+	private JLabel ET_Advertencia;
 	private JPanel panel;
+	private JPanel panelAdvertencia;
 	private JButton BTN_Iniciar;
 	private JComboBox comboBox;
 	private int tamanoAlbum;
@@ -93,6 +95,13 @@ public class View {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
+		panelAdvertencia = new JPanel();
+		panelAdvertencia.setBackground(new Color(244, 164, 96));
+		panelAdvertencia.setBounds(10, 364, 362, 57);
+		frame.getContentPane().add(panelAdvertencia);
+		panelAdvertencia.setLayout(null);
+		panelAdvertencia.setVisible(false);
+		
 		IniciaEtiquetas();
 		
 		IniciaCamposDeTexto();
@@ -106,27 +115,58 @@ public class View {
 		BTN_Iniciar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
+				limpiaAdvertencia();
+				limpiaEstadisticas();
 				levantaDatosCargados();
 				
-				principal = new Principal(tamanoAlbum, cantSimulaciones, cantUsuarios, opcionElegida);
-				
-				principal.correSimulacion();
-				
-				muestraEstadisticas();
+				if(validaDatos()) {
+					principal = new Principal(tamanoAlbum, cantSimulaciones, cantUsuarios, opcionElegida);
+					
+					principal.correSimulacion();
+					
+					muestraEstadisticas();
+				}
+				else {
+					System.out.println("advertencia");
+					lanzaAdvertencia();
+				}	
 			}
-
-
-
 
 		});
 		
 		BTN_Iniciar.setBounds(95, 311, 170, 35);
 		frame.getContentPane().add(BTN_Iniciar);
 		
-				
+	}
+	
+	private void lanzaAdvertencia() {
+		panelAdvertencia.setVisible(true);
+		ET_Advertencia.setVisible(true);
+		ET_Advertencia.setText("Hay un erro en los datos ingresados");
+	}
+	
+	private void limpiaAdvertencia() {
+		panelAdvertencia.setVisible(false);
+		ET_Advertencia.setVisible(false);
 		
+	}
+	
+	private boolean validaDatos() {
 		
+		boolean val1 =  tamanoAlbum >0;
+		boolean val2 = cantSimulaciones >0;
+		boolean val3 = cantUsuarios >0;
+		boolean val4;
+		
+		if(opcionElegida == OpcionesDeSimulacion.UN_USUARIO && cantUsuarios !=1) {
+			val4=false;
+		}
+		else {
+			val4=true;
+		}
+		
+		return val1 && val2 && val3 && val4;
+
 	}
 	
 	private void muestraEstadisticas() {
@@ -136,12 +176,20 @@ public class View {
 		textField_3.setText(String.valueOf(principal.CantPaquetesOptimoPorUsuario()));
 		textField_4.setText(String.valueOf(principal.CantPaquetesPeor()));
 		textField_5.setText(String.valueOf(principal.CantPaquetesPeorPorUsuario()));
-
-		
+	}
+	
+	private void limpiaEstadisticas() {
+		textField.setText(String.valueOf(""));
+		textField_1.setText(String.valueOf(""));
+		textField_2.setText(String.valueOf(""));
+		textField_3.setText(String.valueOf(""));
+		textField_4.setText(String.valueOf(""));
+		textField_5.setText(String.valueOf(""));
 		
 	}
 	
 	private void levantaDatosCargados() {
+		
 		String str=TF_tamañoAlbum.getText();
 		tamanoAlbum = Integer.parseInt(str);
 		
@@ -235,6 +283,12 @@ public class View {
 		ET_Titulo.setBounds(178, 11, 446, 44);
 		frame.getContentPane().add(ET_Titulo);
 		
+		ET_Advertencia = new JLabel("");
+		ET_Advertencia.setFont(new Font("Snap ITC", Font.BOLD, 15));
+		ET_Advertencia.setBounds(10, 11, 342, 35);
+		panelAdvertencia.add(ET_Advertencia);
+		ET_Advertencia.setVisible(false);
+		
 	}
 
 	private void IniciaCamposDeTexto() {
@@ -260,6 +314,7 @@ public class View {
 		frame.getContentPane().add(TF_cantSimulaciones);
 		
 		textField = new JTextField();
+		textField.setDisabledTextColor(new Color(0, 100, 0));
 		textField.setEnabled(false);
 		textField.setEditable(false);
 		textField.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -269,6 +324,7 @@ public class View {
 		panel.add(textField);
 		
 		textField_1 = new JTextField();
+		textField_1.setDisabledTextColor(new Color(0, 100, 0));
 		textField_1.setEnabled(false);
 		textField_1.setEditable(false);
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -278,6 +334,7 @@ public class View {
 		panel.add(textField_1);
 		
 		textField_2 = new JTextField();
+		textField_2.setDisabledTextColor(new Color(0, 100, 0));
 		textField_2.setEnabled(false);
 		textField_2.setEditable(false);
 		textField_2.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -287,6 +344,7 @@ public class View {
 		panel.add(textField_2);
 		
 		textField_3 = new JTextField();
+		textField_3.setDisabledTextColor(new Color(0, 100, 0));
 		textField_3.setEnabled(false);
 		textField_3.setEditable(false);
 		textField_3.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -296,6 +354,7 @@ public class View {
 		panel.add(textField_3);
 		
 		textField_4 = new JTextField();
+		textField_4.setDisabledTextColor(new Color(0, 100, 0));
 		textField_4.setEnabled(false);
 		textField_4.setEditable(false);
 		textField_4.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -305,6 +364,7 @@ public class View {
 		panel.add(textField_4);
 		
 		textField_5 = new JTextField();
+		textField_5.setDisabledTextColor(new Color(0, 100, 0));
 		textField_5.setEnabled(false);
 		textField_5.setEditable(false);
 		textField_5.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -313,5 +373,4 @@ public class View {
 		textField_5.setBounds(336, 214, 55, 31);
 		panel.add(textField_5);
 	}
-
 }
