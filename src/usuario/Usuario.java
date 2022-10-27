@@ -48,7 +48,7 @@ public class Usuario {
 		return _album.YaTieneFigurita(numeFigu);
 	}
 	
-	public boolean AlbumCompleto() {
+	public boolean AlbumCompleto() { // O(1)
 		return _album.albumCompleto();
 	}
 	

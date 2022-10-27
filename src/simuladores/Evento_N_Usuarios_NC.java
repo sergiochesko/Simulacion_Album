@@ -54,17 +54,17 @@ public class Evento_N_Usuarios_NC implements Evento{
 		
 	//	List<Integer> faltantesU1 = usuario1.MisFaltantes();
 		
-		for(int i=0; i < repetidasU1.length; i++) if(repetidasU1[i] > 0) { // n-veces O(n3)
+		for(int i=0; i < repetidasU1.length; i++) if(repetidasU1[i] > 0) { 
 			//System.out.println("*****intento cambiar********");
 			int numFigu1 = i;
-			List<Integer> faltantesU1 = usuario1.MisFaltantes();
-			Tupla tupla = UsuarioParaCambiarla( numFigu1, faltantesU1); //O(n2)
+		//	List<Integer> faltantesU1 = usuario1.MisFaltantes();
+			Tupla tupla = UsuarioParaCambiarla2( numFigu1, usuario1);
 			//System.out.println("buscaTupla--------------------*******************");
 			if(tupla!=null) { // O(1)
 				//System.out.println("-----------------------------------------------------------------------------------------");
 				Usuario usuario2 = tupla._usuario;
 				Integer numFigu2 = tupla._numero;
-				intercambian(usuario1, usuario2, numFigu1, numFigu2); // O(1)
+				intercambian(usuario1, usuario2, numFigu1, numFigu2); 
 				
 				//System.out.println(usuario1._album.ToString());
 				//System.out.println(usuario2._album.ToString());
@@ -78,6 +78,23 @@ public class Evento_N_Usuarios_NC implements Evento{
 			}
 		}
 		
+	}
+	
+	private Tupla UsuarioParaCambiarla2(int numFigu, Usuario usuario1) {
+		
+		for(Usuario usuario2 : _ListaUsuarios) if(!usuario2.AlbumCompleto() && !usuario2.YaLaTengo(numFigu)) { 
+			
+			int[] repetidasU2 = usuario2.MisRepetidas();
+			
+			for(int numOtraFigu=1; numOtraFigu<repetidasU2.length; numOtraFigu++) {
+				
+				if(!usuario1.YaLaTengo(numOtraFigu) && repetidasU2[numOtraFigu] > 0) {
+					return new Tupla(numOtraFigu,usuario2);
+				}
+				
+			}
+		}
+		return null;
 	}
 	
 
@@ -135,10 +152,10 @@ public class Evento_N_Usuarios_NC implements Evento{
 		}
 		return true;
 	}
-	
+	/*
 	private Tupla UsuarioParaCambiarla(int numFigu, List<Integer> faltantesU1) { //O(n2)
 		
-		for(Usuario usuario2 : _ListaUsuarios) if(!usuario2.YaLaTengo(numFigu)) { // O(n)
+		for(Usuario usuario2 : _ListaUsuarios) if(!usuario2.AlbumCompleto() && !usuario2.YaLaTengo(numFigu)) { // O(n)
 			
 			for(Integer numFaltatne : faltantesU1) {// O(m)
 				
@@ -149,5 +166,8 @@ public class Evento_N_Usuarios_NC implements Evento{
 			}
 		}
 		return null;
-	}
+	
+	*/
+	
+
 }

@@ -24,7 +24,7 @@ public class Album {
 	
 	public boolean YaTieneFigurita(int numFigu) {
 		if (numFigu < 0 || numFigu >= _album.length) {
-			throw new IllegalArgumentException("Numero de figurita Incorrecto");
+			throw new IllegalArgumentException("Numero de figurita Incorrecto: " + numFigu);
 		}
 		else {
 			return _album[numFigu];

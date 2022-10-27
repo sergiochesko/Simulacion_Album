@@ -45,7 +45,8 @@ public class Principal {
 		for(int i=0; i<_CantIteracionesPedidas-1; i++) {
 			System.out.println("iteracion: " +i);
 			Evento NuevoEvento = creaEvento();
-			NuevoEvento.correSimulacion();
+			
+			NuevoEvento.correSimulacion(); //el motor de la simulacion
 
 			contador= contador + NuevoEvento.getCantPaquetesComprados();
 			
