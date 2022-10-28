@@ -19,7 +19,10 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JProgressBar;
 
 public class View {
 
@@ -54,6 +57,9 @@ public class View {
 	private int cantSimulaciones;
 	private OpcionesDeSimulacion opcionElegida;
 	private Principal principal;
+	private JProgressBar progressBar;
+	private SimulacionHilo simulacion;
+	private List<JTextField> _arrayTextFields;
 	
 
 	/**
@@ -121,10 +127,11 @@ public class View {
 				
 				if(validaDatos()) {
 					principal = new Principal(tamanoAlbum, cantSimulaciones, cantUsuarios, opcionElegida);
+					simulacion = new SimulacionHilo(principal, progressBar, _arrayTextFields);
+					simulacion.execute();
+					//principal.correSimulacion();
 					
-					principal.correSimulacion();
-					
-					muestraEstadisticas();
+					//muestraEstadisticas();
 				}
 				else {
 					System.out.println("advertencia");
@@ -136,6 +143,10 @@ public class View {
 		
 		BTN_Iniciar.setBounds(95, 311, 170, 35);
 		frame.getContentPane().add(BTN_Iniciar);
+		
+		progressBar = new JProgressBar();
+		progressBar.setBounds(10, 443, 362, 22);
+		frame.getContentPane().add(progressBar);
 		
 	}
 	
@@ -372,5 +383,14 @@ public class View {
 		textField_5.setColumns(10);
 		textField_5.setBounds(336, 214, 55, 31);
 		panel.add(textField_5);
+		
+		_arrayTextFields = new ArrayList<JTextField>();
+		_arrayTextFields.add(textField);
+		_arrayTextFields.add(textField_1);
+		_arrayTextFields.add(textField_2);
+		_arrayTextFields.add(textField_3);
+		_arrayTextFields.add(textField_4);
+		_arrayTextFields.add(textField_5);
+		
 	}
 }
