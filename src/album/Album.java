@@ -3,6 +3,7 @@ package album;
 import java.util.ArrayList;
 import java.util.List;
 
+import auxiliares.Generador;
 import paquete.Paquete;
 
 public class Album {
@@ -10,6 +11,8 @@ public class Album {
 	private boolean[] _album;
 	private int _cantFiguFaltantes;
 	private boolean _completo;
+
+
 	
 	public Album(int tamanoAlbum) {
 		if (tamanoAlbum <= 0) {
@@ -19,6 +22,7 @@ public class Album {
 		_album = new boolean[tamanoAlbum];
 		_completo = false;
 		_cantFiguFaltantes=tamanoAlbum;
+		
 		}
 	}
 	

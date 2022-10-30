@@ -8,15 +8,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
 import auxiliares.OpcionesDeSimulacion;
 import main.Principal;
-
-import javax.swing.JScrollPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-import javax.swing.JTable;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -51,6 +47,7 @@ public class View {
 	private JPanel panel;
 	private JPanel panelAdvertencia;
 	private JButton BTN_Iniciar;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
 	private int tamanoAlbum;
 	private int cantUsuarios;
@@ -88,6 +85,7 @@ public class View {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBackground(new Color(0, 0, 51));
@@ -114,6 +112,7 @@ public class View {
 		
 		comboBox = new JComboBox();
 		comboBox.setBounds(145, 268, 170, 22);
+		
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Un solo Usuario", "N usuarios Colaborativos","N Usuarios No Colaborativos"}));
 		frame.getContentPane().add(comboBox);
 		
@@ -178,15 +177,6 @@ public class View {
 		
 		return val1 && val2 && val3 && val4;
 
-	}
-	
-	private void muestraEstadisticas() {
-		textField.setText(String.valueOf(principal.CantPaquetesPromedio()));
-		textField_1.setText(String.valueOf(principal.CantPaquetesPromedioPorUsuario()));
-		textField_2.setText(String.valueOf(principal.CantPaquetesOptimo()));
-		textField_3.setText(String.valueOf(principal.CantPaquetesOptimoPorUsuario()));
-		textField_4.setText(String.valueOf(principal.CantPaquetesPeor()));
-		textField_5.setText(String.valueOf(principal.CantPaquetesPeorPorUsuario()));
 	}
 	
 	private void limpiaEstadisticas() {

@@ -33,14 +33,18 @@ public class SimulacionHilo extends SwingWorker<int[], Integer>{
 	@Override
 	public void done() {
 		
+		mostrarEstadisticas();
+		_barra.setIndeterminate(false);
+
+	}
+	
+	private void mostrarEstadisticas() {
 		_arrayTextFields.get(0).setText(String.valueOf(_principal.CantPaquetesPromedio()));
 		_arrayTextFields.get(1).setText(String.valueOf(_principal.CantPaquetesPromedioPorUsuario()));
 		_arrayTextFields.get(2).setText(String.valueOf(_principal.CantPaquetesOptimo()));
 		_arrayTextFields.get(3).setText(String.valueOf(_principal.CantPaquetesOptimoPorUsuario()));
 		_arrayTextFields.get(4).setText(String.valueOf(_principal.CantPaquetesPeor()));
 		_arrayTextFields.get(5).setText(String.valueOf(_principal.CantPaquetesPeorPorUsuario()));
-		_barra.setIndeterminate(false);
-
 	}
 	
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import album.Album;
+import auxiliares.GeneradorRandom;
 import paquete.Paquete;
 
 public class Usuario {
@@ -25,6 +26,7 @@ public class Usuario {
 	}
 	
 	public List<Integer> ComprarPaquete() {
+		Paquete.setGenerador(new GeneradorRandom());
 		Paquete paquete = new Paquete(_tamanoAlbum);
 		List<Integer> repetidasEnPaquete = _album.procesaFiguritas(paquete);
 		agregaRepetidasAColeccionDeRepetidas(repetidasEnPaquete);

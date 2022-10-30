@@ -7,6 +7,7 @@ import org.junit.Test;
 
 public class PaqueteTest1 {
 
+	
 	@Test
 	public void testPaqueteAlbumComun() {
 		

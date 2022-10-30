@@ -2,9 +2,12 @@ package paquete;
 
 import java.util.Random;
 
+import auxiliares.Generador;
+
 public class Paquete {
 	
 	int[] _figuritas;
+	private static Generador _random;
 	
 	public Paquete(int tamanoAlbum) {
 		if (tamanoAlbum <= 0) {
@@ -18,11 +21,11 @@ public class Paquete {
 	}
 
 	private int[] creaCombinacionRandomFiguritas(int tamanoAlbum) {
-		// TODO Auto-generated method stub
-		Random numAleatorio = new Random();
+		
+		//Random numAleatorio = new Random();
 		int[] figuritas = new int[5];
 		for(int i=0; i<5; i++) {
-			figuritas[i] = numAleatorio.nextInt(tamanoAlbum);
+			figuritas[i] = _random.nextInt(tamanoAlbum);
 		}
 		return figuritas;
 	}
@@ -31,6 +34,12 @@ public class Paquete {
 		return _figuritas;
 	}
 	
+	// Setter para el generador
+	public static void setGenerador(Generador generador)
+	{
+		_random = generador;
+	}
+
 	
 	
 	
