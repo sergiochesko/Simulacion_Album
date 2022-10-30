@@ -3,7 +3,6 @@ package album;
 import java.util.ArrayList;
 import java.util.List;
 
-import auxiliares.Generador;
 import paquete.Paquete;
 
 public class Album {

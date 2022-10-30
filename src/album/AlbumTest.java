@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import auxiliares.GeneradorPrefijado;
 import paquete.Paquete;
 
 public class AlbumTest {
@@ -67,9 +68,10 @@ public class AlbumTest {
 	
 	@Test
 	public void testCompletaAlbum() {
-		Album album = creaAlbum(1);
+		Album album = creaAlbum(2);
 		
 		album.procesaUnaFigurita(0);
+		album.procesaUnaFigurita(1);
 				
 		assertTrue(album.YaTieneFigurita(0));
 		assertTrue(album.albumCompleto());
@@ -93,33 +95,35 @@ public class AlbumTest {
 	@Test
 	public void testProcesaPaquete() {
 		Album album = creaAlbum(638);
-		Paquete paquete = new Paquete(638);
+		int[] figus = {0,5,10,11,13};
 		
-		List<Integer> repetidas = album.procesaFiguritas(paquete);
-
-		assertTrue(album.cualesFaltan().size()==(638-(5-repetidas.size())));
+		Paquete paquete = generarPaquetePrefijado(figus, 638);
+		album.procesaFiguritas(paquete);
+		
+		assertTrue(CompruebaSiTieneFiguritas(figus, album));
 
 	}
 
 	@Test
 	public void testDevuelveRepetidas() {
-		//creo album de 5 figuritas
-		Album album = creaAlbum(5);
 		
-		//creo paquete al azar
-		Paquete paquete = new Paquete(5);
+		Album album = creaAlbum(638);
 		
-		//lleno el album
-		album.procesaUnaFigurita(0);
-		album.procesaUnaFigurita(1);
-		album.procesaUnaFigurita(2);
-		album.procesaUnaFigurita(3);
-		album.procesaUnaFigurita(4);
+		int[] figus = {0,5,10,11,13};
+		Paquete paquete = generarPaquetePrefijado(figus, 638);
+		
+		album.procesaFiguritas(paquete);
+		
+		int[] figus2 = {1,5,10,11,12};
+		paquete = generarPaquetePrefijado(figus2, 638);
 		
 		//proceso el paquete y guardo la lista de repetidas (todas estan repetidas)
 		List<Integer> repetidas = album.procesaFiguritas(paquete);
 
-		assertTrue(repetidas.size()==5);
+		assertTrue(repetidas.size()==3);
+		assertTrue(repetidas.get(0)==5);
+		assertTrue(repetidas.get(1)==10);
+		assertTrue(repetidas.get(2)==11);
 
 	}
 	
@@ -128,6 +132,26 @@ public class AlbumTest {
 	
 	private Album creaAlbum(int cantEspacios) {
 		return new Album(cantEspacios);
+	}
+	
+	private Paquete generarPaquetePrefijado(int[] figus, int tam_paquete) {
+		
+		Paquete.setGenerador(new GeneradorPrefijado(figus));
+		return new Paquete(tam_paquete);
+		
+	}
+	
+	private boolean CompruebaSiTieneFiguritas(int[] figus, Album album) {
+		
+		for(int i=0;i<figus.length;i++) {
+			
+			if(!album.YaTieneFigurita(figus[i])) {
+				return false;
+			}
+		}
+		
+		return true;
+		
 	}
 
 }

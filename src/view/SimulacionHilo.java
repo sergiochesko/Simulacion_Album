@@ -1,7 +1,9 @@
 package view;
 
 import java.util.List;
-
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
@@ -13,12 +15,13 @@ public class SimulacionHilo extends SwingWorker<int[], Integer>{
 	private Principal _principal;
 	private JProgressBar _barra;
 	private List<JTextField> _arrayTextFields;
+
 	
 	public SimulacionHilo(Principal principal,JProgressBar barra, List<JTextField> arrayTextFields) {
 		_principal = principal;
 		_barra=barra;
 		_arrayTextFields = arrayTextFields;
-		
+
 	}
 	
 	
@@ -26,17 +29,18 @@ public class SimulacionHilo extends SwingWorker<int[], Integer>{
 	protected int[] doInBackground() throws Exception {
 		_barra.setIndeterminate(true);
 		_principal.correSimulacion();
+		
 		return null;
 	}
 	
 	
 	@Override
 	public void done() {
-		
-		mostrarEstadisticas();
-		_barra.setIndeterminate(false);
 
+			mostrarEstadisticas();
+			_barra.setIndeterminate(false);
 	}
+
 	
 	private void mostrarEstadisticas() {
 		_arrayTextFields.get(0).setText(String.valueOf(_principal.CantPaquetesPromedio()));

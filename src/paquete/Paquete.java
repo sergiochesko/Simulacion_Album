@@ -1,6 +1,5 @@
 package paquete;
 
-import java.util.Random;
 
 import auxiliares.Generador;
 

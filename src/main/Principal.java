@@ -9,7 +9,6 @@ import simuladores.Evento_N_usuarios;
 public class Principal {
 	
 	private int _CantIteracionesPedidas;
-	private int _CantPaquetes_MejorCasoEncontrado;
 	private int _cantidadUsuarios;
 	private final int _tamanoAlbum;
 	private int _CantPaquetes_Promedio;
@@ -24,7 +23,6 @@ public class Principal {
 		
 		_tamanoAlbum = tamanoAlbum;
 		_CantIteracionesPedidas = CantIteracionesPedidas;
-		_CantPaquetes_MejorCasoEncontrado =0;
 		_cantidadUsuarios = cantidadUsuarios;
 		_CantPaquetes_Promedio = 0;
 		_CantPaquetes_PromedioPorUsuario=0;

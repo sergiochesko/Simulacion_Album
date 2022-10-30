@@ -10,7 +10,7 @@ public class Evento_N_usuariosTest {
 	public void test() {
 		Evento_N_usuarios evento = new Evento_N_usuarios(2,50);
 		
-		int cantPaquetesComprados = evento.correSimulacion();
+		evento.correSimulacion();
 		
 		assertTrue(evento.todosCompletaron());
 		

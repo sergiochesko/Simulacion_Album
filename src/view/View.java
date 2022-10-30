@@ -47,6 +47,7 @@ public class View {
 	private JPanel panel;
 	private JPanel panelAdvertencia;
 	private JButton BTN_Iniciar;
+
 	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
 	private int tamanoAlbum;
@@ -116,6 +117,8 @@ public class View {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Un solo Usuario", "N usuarios Colaborativos","N Usuarios No Colaborativos"}));
 		frame.getContentPane().add(comboBox);
 		
+
+		
 		BTN_Iniciar = new JButton("INICIAR SIMULACION");
 		BTN_Iniciar.addActionListener(new ActionListener() {
 			
@@ -143,9 +146,12 @@ public class View {
 		BTN_Iniciar.setBounds(95, 311, 170, 35);
 		frame.getContentPane().add(BTN_Iniciar);
 		
+		
 		progressBar = new JProgressBar();
 		progressBar.setBounds(10, 443, 362, 22);
 		frame.getContentPane().add(progressBar);
+		
+		
 		
 	}
 	

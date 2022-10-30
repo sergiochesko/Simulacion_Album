@@ -10,7 +10,7 @@ public class Evento_N_Usuarios_NCTest {
 	public void test() {
 		Evento_N_Usuarios_NC evento = new Evento_N_Usuarios_NC(10,638);
 		
-		int cantPaquetesComprados = evento.correSimulacion();
+		evento.correSimulacion();
 		System.out.println("estadisticas");
 		System.out.println(evento.getCantPaquetesComprados());
 		System.out.println(evento.getCantRepetidas());

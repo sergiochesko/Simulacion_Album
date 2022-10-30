@@ -9,7 +9,6 @@ import paquete.Paquete;
 
 public class Usuario {
 
-	@SuppressWarnings("unused")
 	//private String _nombre;
 	public Album _album;
 	private int[] _repetidas;

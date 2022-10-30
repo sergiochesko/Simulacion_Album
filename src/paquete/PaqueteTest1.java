@@ -5,13 +5,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.Test;
 
+import auxiliares.GeneradorPrefijado;
+import auxiliares.GeneradorRandom;
+
 public class PaqueteTest1 {
 
 	
 	@Test
+	public void testPaqueteAdmiteRepetidas() {
+		
+		int[] figus = {0,1,2,2,1};
+		Paquete paquete = generarPaquetePrefijado(figus, 638);
+		
+		assertEquals(paquete.dameFiguritasEnPaquete()[2],paquete.dameFiguritasEnPaquete()[3]);
+		
+	}
+	
+	@Test
 	public void testPaqueteAlbumComun() {
 		
-		Paquete paquete = creaPaquete(638);
+		Paquete paquete = generarPaqueteAleatorio(638);
 		
 		assertTrue(todasMenoresAlNro(637,paquete.dameFiguritasEnPaquete()));
 		assertTrue(paquete.dameFiguritasEnPaquete().length==5);
@@ -21,7 +34,7 @@ public class PaqueteTest1 {
 	@Test
 	public void testPaqueteAlbumUnaFigurita() {
 		
-		Paquete paquete = creaPaquete(1);
+		Paquete paquete = generarPaqueteAleatorio(1);
 		
 		assertTrue(paquete.dameFiguritasEnPaquete()[0]==0);
 		assertTrue(paquete.dameFiguritasEnPaquete()[3]==0);
@@ -33,15 +46,10 @@ public class PaqueteTest1 {
 	public void testPaqueteAlbumSinFiguritas() {
 		
 		@SuppressWarnings("unused")
-		Paquete paquete = creaPaquete(0);
+		Paquete paquete = generarPaqueteAleatorio(0);
 		
 	}
 
-
-	
-	private Paquete creaPaquete(int canfFiguritasAlbum) {
-		return new Paquete(canfFiguritasAlbum);
-	}
 	
 	private boolean todasMenoresAlNro(int figuMasAlta, int[] arrayFigu) {
 		for(int i=0;i<arrayFigu.length;i++) {
@@ -50,5 +58,19 @@ public class PaqueteTest1 {
 			}
 		}
 		return true;
+	}
+	
+	private Paquete generarPaquetePrefijado(int[] figus, int tam_paquete) {
+		
+		Paquete.setGenerador(new GeneradorPrefijado(figus));
+		return new Paquete(tam_paquete);
+		
+	}
+	
+	private Paquete generarPaqueteAleatorio(int tam_paquete) {
+		
+		Paquete.setGenerador(new GeneradorRandom());
+		return new Paquete(tam_paquete);
+		
 	}
 }
