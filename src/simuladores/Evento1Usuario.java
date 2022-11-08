@@ -8,9 +8,7 @@ public class Evento1Usuario implements Evento{
 	private int _CantPaquetesComprados;
 	private final int _tamanoAlbum;
 	
-	/*
-	 * cantFiguritas
-	 */
+
 	public Evento1Usuario(int tamanoAlbum) {
 		_tamanoAlbum = tamanoAlbum;
 		_usuario = new Usuario(_tamanoAlbum);

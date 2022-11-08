@@ -15,7 +15,6 @@ public class Principal {
 	private int _CantPaquetes_PromedioPorUsuario;
 	private OpcionesDeSimulacion _opcion;
 	
-	//conviene crear una interface de simulador para que decida en tiempo de ejecucion. Por ahora avanzo con esto
 	private Evento _MejorEvento;
 	private Evento _PeorEvento;
 	

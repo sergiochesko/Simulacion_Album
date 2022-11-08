@@ -40,44 +40,27 @@ public class Evento_N_Usuarios_NC implements Evento{
 
 
 
-	public void IntercambioRepetidas(Usuario usuario1) { // O(n3)
-		/*
-		System.out.println(usuario1.toString());
-		System.out.println("paq: "+usuario1.CantSobresComprados());
-		System.out.println("fal: "+usuario1.MisFaltantes().size());
-		System.out.println("rep: "+usuario1.cantRepetidas());
-		System.out.println(usuario1._album.ToString());
-		System.out.println(usuario1.repetidasToString());
-		*/
+	public void IntercambioRepetidas(Usuario usuario1) { 
+
 		
 		int[] repetidasU1 = usuario1.MisRepetidas();
 		
-	//	List<Integer> faltantesU1 = usuario1.MisFaltantes();
-		
 		for(int i=0; i < repetidasU1.length; i++) if(repetidasU1[i] > 0) { 
-			//System.out.println("*****intento cambiar********");
+
 			int numFigu1 = i;
-		//	List<Integer> faltantesU1 = usuario1.MisFaltantes();
+
 			Tupla tupla = UsuarioParaCambiarla2( numFigu1, usuario1);
-			//System.out.println("buscaTupla--------------------*******************");
+
 			if(tupla!=null) { // O(1)
-				//System.out.println("-----------------------------------------------------------------------------------------");
+				
 				Usuario usuario2 = tupla._usuario;
 				Integer numFigu2 = tupla._numero;
 				intercambian(usuario1, usuario2, numFigu1, numFigu2); 
 				
-				//System.out.println(usuario1._album.ToString());
-				//System.out.println(usuario2._album.ToString());
-				//System.out.println(usuario1.repetidasToString());
-				//System.out.println(usuario2.repetidasToString());
 				repetidasU1[numFigu1] = repetidasU1[numFigu1] -1;
 				
 			}
-			else {
-				//System.out.println("no encuentro usuario");
-			}
 		}
-		
 	}
 	
 	private Tupla UsuarioParaCambiarla2(int numFigu, Usuario usuario1) {
@@ -100,8 +83,7 @@ public class Evento_N_Usuarios_NC implements Evento{
 
 
 	private void intercambian(Usuario usuario1, Usuario usuario2, int i, int j) {
-		//System.out.println("intercambia "+i);
-		//System.out.println("intercambia "+j);
+
 		usuario1.EntregaFiguRepetida(i);
 		usuario2.EntregaFiguRepetida(j);
 		usuario1.AgregoUnaFigurita(j);
@@ -152,22 +134,6 @@ public class Evento_N_Usuarios_NC implements Evento{
 		}
 		return true;
 	}
-	/*
-	private Tupla UsuarioParaCambiarla(int numFigu, List<Integer> faltantesU1) { //O(n2)
-		
-		for(Usuario usuario2 : _ListaUsuarios) if(!usuario2.AlbumCompleto() && !usuario2.YaLaTengo(numFigu)) { // O(n)
-			
-			for(Integer numFaltatne : faltantesU1) {// O(m)
-				
-				if (usuario2.MisRepetidas()[numFaltatne]>0) { //O1
-					
-					return new Tupla(numFaltatne,usuario2);// O1
-				}
-			}
-		}
-		return null;
-	
-	*/
 	
 
 }

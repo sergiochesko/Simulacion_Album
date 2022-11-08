@@ -21,7 +21,6 @@ public class Paquete {
 
 	private int[] creaCombinacionRandomFiguritas(int tamanoAlbum) {
 		
-		//Random numAleatorio = new Random();
 		int[] figuritas = new int[5];
 		for(int i=0; i<5; i++) {
 			figuritas[i] = _random.nextInt(tamanoAlbum);
@@ -33,7 +32,7 @@ public class Paquete {
 		return _figuritas;
 	}
 	
-	// Setter para el generador
+
 	public static void setGenerador(Generador generador)
 	{
 		_random = generador;

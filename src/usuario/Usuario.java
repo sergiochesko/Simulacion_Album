@@ -9,7 +9,7 @@ import paquete.Paquete;
 
 public class Usuario {
 
-	//private String _nombre;
+
 	public Album _album;
 	private int[] _repetidas;
 	private int _contadorSobresComprados;

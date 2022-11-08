@@ -1,9 +1,7 @@
 package view;
 
 import java.util.List;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.util.concurrent.ExecutionException;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
@@ -33,14 +31,14 @@ public class SimulacionHilo extends SwingWorker<int[], Integer>{
 		return null;
 	}
 	
-	
+
+
 	@Override
 	public void done() {
 
 			mostrarEstadisticas();
 			_barra.setIndeterminate(false);
 	}
-
 	
 	private void mostrarEstadisticas() {
 		_arrayTextFields.get(0).setText(String.valueOf(_principal.CantPaquetesPromedio()));
